@@ -130,48 +130,48 @@ require([
   //     esri.id.getCredential(info.portalUrl + "/sharing");
   //   });
 
-  // IdentityManager.getCredential(portalUrl2)
-  //   .then(function (credential) {
-  //     token = credential.token;
-  //     console.log("User is signed in: ", credential);
+  IdentityManager.getCredential(portalUrl2)
+    .then(function (credential) {
+      token = credential.token;
+      console.log("User is signed in: ", credential);
 
-  //     // Folder fetch operation
-  //     const folderUrl = `https://mtagisdev.lirr.org/dosserverdev/rest/services/EAMPRD_EQUIPMENT?f=json&token=${token}`;
-  //     console.log(token);
-  //     fetch(folderUrl)
-  //       .then((response) => {
-  //         if (!response.ok) {
-  //           throw new Error(`HTTP error! Status: ${response.status}`);
-  //         }
-  //         return response.json();
-  //       })
-  //       .then((data) => {
-  //         if (data.services) {
-  //           data.services.forEach((service) => {
-  //             const listItem = createCalciteListItem(service);
-  //             document
-  //               .getElementById("featureServiceList")
-  //               .appendChild(listItem);
-  //           });
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching folder:", error);
-  //       });
-  //   })
-  //   .catch(function (error) {
-  //     console.log("User is not signed in: ", error);
-  //   });
+      // Folder fetch operation
+      const folderUrl = `https://mtagisdev.lirr.org/dosserverdev/rest/services/EAMPRD_EQUIPMENT?f=json&token=${token}`;
+      console.log(token);
+      fetch(folderUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.services) {
+            data.services.forEach((service) => {
+              const listItem = createCalciteListItem(service);
+              document
+                .getElementById("featureServiceList")
+                .appendChild(listItem);
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching folder:", error);
+        });
+    })
+    .catch(function (error) {
+      console.log("User is not signed in: ", error);
+    });
 
-  // IdentityManager.getCredential(portalUrl2)
-  //   .then(function (credential) {
-  //     token = credential.token;
-  //     console.log("User is signed in: ", credential);
-  //     // credential object contains the token in credential.token
-  //   })
-  //   .catch(function (error) {
-  //     console.log("User is not signed in: ", error);
-  //   });
+  IdentityManager.getCredential(portalUrl2)
+    .then(function (credential) {
+      token = credential.token;
+      console.log("User is signed in: ", credential);
+      // credential object contains the token in credential.token
+    })
+    .catch(function (error) {
+      console.log("User is not signed in: ", error);
+    });
 
   const view = new MapView({
     container: "viewDiv",
